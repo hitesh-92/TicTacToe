@@ -1,16 +1,21 @@
-#Picks
+# Picks
 P = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
-#Picks Reset
-Preset = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+# Picks Reset
+# Preset = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
 
-#turn counter (max turns = 9)
+def gridReset():
+	for i in range(len(P)):
+		P[i] = ' '
+
+# Turn counter (max turns = 9. if 9 tiebreak)
 count = [0]
 
+# Turn counter
 def add():
 	count[0] += 1
 
-#Current Grid showing picks
-def display_board():    
+# Current Grid showing picks
+def display_board():
     print('{n7}|{n8}|{n9}\n------\n{n4}|{n5}|{n6}\n------\n{n1}|{n2}|{n3}'.format(n1=P[0],n2=P[1],n3=P[2],n4=P[3],n5=P[4],n6=P[5],n7=P[6],n8=P[7],n9=P[8]))
     #print(show)
 
@@ -25,7 +30,8 @@ def runTicTacToe():
 			restart = False
 			break
 
-		P = Preset
+		# P = Preset
+		gridReset()
 		count[0] = 0
 
 
@@ -87,7 +93,7 @@ def player_turns(p1,p2):
 
 			if res != True:
 				print('ERROR! pick_complete FALSE player 1')# chnage this to error restart
-			
+
 			match = check_for_match()
 			if match == True:
 				ifwinner = haswon(1)
@@ -101,7 +107,7 @@ def player_turns(p1,p2):
 			play = False
 			tie = True
 			display_board()
-			break	
+			break
 
 		while switch_turn == False:
 			player_turn = pick(p2)
@@ -149,7 +155,7 @@ def pick(p):
 	if completed == True:
 		return True
 
-    		
+
 #add to count, display_board() and switch if pick made
 def pick_complete(player_turn):
 	if player_turn == True:
@@ -162,14 +168,14 @@ def pick_complete(player_turn):
 def check_for_match():
 ## MAKE SURE THIS WORKS - just copied and pasted in
 #THEN CHECK FOR TIE
-#THEN sort out if there was a winner 
+#THEN sort out if there was a winner
     win_combo = [ [6,3,0], [7,4,1], [8,5,3], [8,4,0], [6,7,8], [3,4,5], [0,1,2], [6,4,2] ]
 
     Xwin = ['X', 'X', 'X']
     Owin = ['O','O','O']
 
     winner = False
-    
+
     for i in range(len(win_combo)):
 
         check = []
